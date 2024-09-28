@@ -1,3 +1,5 @@
+const totalPressUps = 3100
+
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
 
@@ -9,51 +11,107 @@ import { CuboidCollider, BallCollider, Physics, RigidBody } from '@react-three/r
 import { EffectComposer, N8AO } from '@react-three/postprocessing'
 import { easing } from 'maath'
 
+const scaledTotal = totalPressUps / 10
+
 const accents = ['#4060ff', '#20ffa0', '#ff4060', '#ffcc00']
-const shuffle = (accent = 0) => [
-  { color: '#444', roughness: 0.1 },
-  { color: '#444', roughness: 0.75 },
-  { color: '#444', roughness: 0.75 },
-  { color: 'white', roughness: 0.1 },
-  { color: 'white', roughness: 0.75 },
-  { color: 'white', roughness: 0.1 },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: accents[accent], roughness: 0.75, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true }
-]
+const colours = ['rgb(230, 0, 121)', '#fff']
+const boxSize = 1.4
+// const shuffle = (accent = 0) => [
+//   { color: '#444', roughness: 0.1 },
+//   { color: '#444', roughness: 0.075 },
+//   { color: '#444', roughness: 0.175 },
+//   { color: 'white', roughness: 0.1 },
+//   { color: 'white', roughness: 0.15 },
+//   { color: 'white', roughness: 0.1 },
+//   { color: accents[accent], roughness: 0.1, accent: true },
+//   { color: accents[accent], roughness: 0.175, accent: true }
+// ]
+
+const shuffle = (accent = 0) => {
+  let shapeArray = []
+  for (let i = 0; i < scaledTotal; i++) {
+    let ran = Math.floor(Math.random() * 4)
+    if (ran < 3) {
+      shapeArray.push({
+        color: colours[Math.floor(Math.random() * colours.length)],
+        roughness: Math.random() * 1
+      })
+    } else {
+      shapeArray.push({
+        color: accents[accent],
+        roughness: Math.random() * 1,
+        accent: true
+      })
+    }
+  }
+  return shapeArray
+}
 
 export const App = () => (
-  <div className="container">
-    <div className="nav">
-      <h1 className="label" />
-      <div />
-      <span className="caption" />
-      <div />
-      <a href="https://lusion.co/">
-        <div className="button">VISIT LUSION</div>
-      </a>
-      <div className="button gray">///</div>
+  <main>
+    <div className="container">
+      <div className="nav">
+        <img height="40" src="https://rcl.assets.cancerresearchuk.org/images/logos/cruk.svg" />
+        {/* <h1 className="label" /> */}
+        <div />
+        <span className="caption" />
+        <div />
+        <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
+          <div className="button">DONATE</div>
+        </a>
+        {/* <div className="button gray">///</div> */}
+      </div>
+      <Scene style={{ borderRadius: 20 }} />
     </div>
-    <Scene style={{ borderRadius: 20 }} />
-  </div>
+    <section className="container text-container">
+      <div>
+        <p>
+          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
+            Hi i'm Alistair McClymont and I’m doing 100 push ups every day this October to help raise money for Cancer Research UK. Please show your support and
+            help fund life-saving research by donating to my page.
+          </a>
+        </p>
+        <p>
+          Every box represents 10 push-ups, i'll be doing push-ups in blocks of 10 each day, if you check back on this page you will see the number of boxes
+          grow.
+        </p>
+        <p>Please donate if you can, all money goes to Cancer Research UK</p>
+        {/* <p>
+          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
+            <div className="button">DONATE</div>
+          </a>
+        </p> */}
+      </div>
+    </section>
+    <section className="container text-container footer">
+      <h2>about this page</h2>
+      <p>
+        I'm an <a href="https://alistairmcclymont.com">artist</a> and <a href="https://amcc.io">coder</a> from the UK.
+      </p>
+      <p>
+        Thanks to <a href="https://lusion.co/">lusion.co</a> for open sourcing their 3D example on{' '}
+        <a href="https://r3f.docs.pmnd.rs/getting-started/examples">React Three Fiber's showcase</a>.
+      </p>
+    </section>
+  </main>
 )
 
 function Scene(props) {
   const [accent, click] = useReducer((state) => ++state % accents.length, 0)
   const connectors = useMemo(() => shuffle(accent), [accent])
   return (
-    <Canvas onClick={click} shadows dpr={[1, 1.5]} gl={{ antialias: false }} camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }} {...props}>
+    <Canvas onClick={click} shadows dpr={[1, 1.5]} gl={{ antialias: false }} camera={{ position: [0, 0, 50], fov: 17.5, near: 1, far: 100 }} {...props}>
       <color attach="background" args={['#141622']} />
       <ambientLight intensity={0.4} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
       <Physics /*debug*/ gravity={[0, 0, 0]}>
         <Pointer />
         {connectors.map((props, i) => <Connector key={i} {...props} />) /* prettier-ignore */}
-        <Connector position={[10, 10, 5]}>
+        {/* <Connector position={[100, 100, 5]}>
           <Model>
             <MeshTransmissionMaterial clearcoat={1} thickness={0.1} anisotropicBlur={0.1} chromaticAberration={0.1} samples={8} resolution={512} />
           </Model>
-        </Connector>
+        </Connector> */}
       </Physics>
       <EffectComposer disableNormalPass multisampling={8}>
         <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
@@ -79,11 +137,9 @@ function Connector({ position, children, vec = new THREE.Vector3(), scale, r = T
   })
   return (
     <RigidBody linearDamping={4} angularDamping={1} friction={0.1} position={pos} ref={api} colliders={false}>
-      <CuboidCollider args={[0.38, 1.27, 0.38]} />
-      <CuboidCollider args={[1.27, 0.38, 0.38]} />
-      <CuboidCollider args={[0.38, 0.38, 1.27]} />
+      <CuboidCollider args={[boxSize / 2, boxSize / 2, boxSize / 2]} />
       {children ? children : <Model {...props} />}
-      {accent && <pointLight intensity={4} distance={2.5} color={props.color} />}
+      {/* {accent && <pointLight intensity={4} distance={2.5} color={props.color} />} */}
     </RigidBody>
   )
 }
@@ -107,8 +163,16 @@ function Model({ children, color = 'white', roughness = 0, ...props }) {
     easing.dampC(ref.current.material.color, color, 0.2, delta)
   })
   return (
-    <mesh ref={ref} castShadow receiveShadow scale={10} geometry={nodes.connector.geometry}>
-      <meshStandardMaterial metalness={0.2} roughness={roughness} map={materials.base.map} />
+    // <mesh ref={ref} castShadow receiveShadow scale={10} geometry={nodes.connector.geometry}>
+    //   <meshStandardMaterial metalness={0.2} roughness={roughness} map={materials.base.map} />
+    //   {children}
+    // </mesh>
+    <mesh ref={ref} scale={1}>
+      <boxGeometry attach="geometry" args={[boxSize, boxSize, boxSize]} />
+
+      {/* <MeshTransmissionMaterial clearcoat={1} thickness={0.1} anisotropicBlur={0.1} chromaticAberration={0.1} samples={8} resolution={512} /> */}
+
+      <meshStandardMaterial attach="material" color="#6be092" />
       {children}
     </mesh>
   )
