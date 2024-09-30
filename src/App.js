@@ -1,4 +1,4 @@
-const totalPressUps = 3100
+const totalPressUps = 10
 
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
@@ -56,7 +56,7 @@ export const App = () => (
         <div />
         <span className="caption" />
         <div />
-        <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
+        <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">
           <div className="button">DONATE</div>
         </a>
         {/* <div className="button gray">///</div> */}
@@ -70,33 +70,28 @@ export const App = () => (
     <section className="container text-container">
       <div>
         <p>
-          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
+          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">
             Hi i'm Alistair McClymont and I’m doing 100 push ups every day this October to help raise money for Cancer Research UK. Please show your support and
             help fund life-saving research by donating to my page.
           </a>
         </p>
         <p>
-          Every box represents 10 push-ups, i'll be doing push-ups in blocks of 10 each day, if you check back on this page you will see the number of boxes
-          grow.
+          Every box above represents 10 push-ups, i'll be doing push-ups in blocks of 10 each day, if you check back on this page you will see the number of
+          boxes grow.
         </p>
-        <p>Please donate if you can, all money goes to Cancer Research UK</p>
-        {/* <p>
-          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-giving-page-168">
-            <div className="button">DONATE</div>
-          </a>
-        </p> */}
+        <p>
+          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">Please donate if you can, all money goes to Cancer Research UK</a>
+        </p>
       </div>
     </section>
-    <section className="container text-container footer">
-      <h2>about this page</h2>
-      <p>
-        I'm an <a href="https://alistairmcclymont.com">artist</a> and <a href="https://amcc.io">coder</a> from the UK.
-      </p>
-      <p>
-        Thanks to <a href="https://lusion.co/">lusion.co</a> for open sourcing their 3D example on{' '}
-        <a href="https://r3f.docs.pmnd.rs/getting-started/examples">React Three Fiber's showcase</a>.
-      </p>
-    </section>
+    {/* <section className="container text-container footer">
+      <div>
+        <h2>about me</h2>
+        <p>
+          I'm an <a href="https://alistairmcclymont.com">artist</a> and <a href="https://amcc.io">coder</a> from the UK. 
+        </p>
+      </div>
+    </section> */}
   </main>
 )
 
