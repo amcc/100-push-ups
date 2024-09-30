@@ -13,7 +13,7 @@ import { easing } from 'maath'
 
 const scaledTotal = totalPressUps / 10
 
-const accents = ['#4060ff', '#20ffa0', '#ff4060', '#ffcc00']
+const accents = ['rgb(69,154,231)', 'rgba(0,0,121)']
 const colours = ['rgb(230, 0, 121)', '#fff']
 const boxSize = 1.4
 // const shuffle = (accent = 0) => [
@@ -61,7 +61,11 @@ export const App = () => (
         </a>
         {/* <div className="button gray">///</div> */}
       </div>
-      <Scene style={{ borderRadius: 20 }} />
+      <div className="scene-container">
+        <div className="scene-inner">
+          <Scene />
+        </div>
+      </div>
     </div>
     <section className="container text-container">
       <div>
@@ -101,13 +105,13 @@ function Scene(props) {
   const connectors = useMemo(() => shuffle(accent), [accent])
   return (
     <Canvas onClick={click} shadows dpr={[1, 1.5]} gl={{ antialias: false }} camera={{ position: [0, 0, 50], fov: 17.5, near: 1, far: 100 }} {...props}>
-      <color attach="background" args={['#141622']} />
+      <color attach="background" args={['#fff']} />
       <ambientLight intensity={0.4} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-      <Physics /*debug*/ gravity={[0, 0, 0]}>
+      <Physics gravity={[0, 0, 0]}>
         <Pointer />
         {connectors.map((props, i) => <Connector key={i} {...props} />) /* prettier-ignore */}
-        {/* <Connector position={[100, 100, 5]}>
+        {/* <Connector position={[5, 5, 5]}>
           <Model>
             <MeshTransmissionMaterial clearcoat={1} thickness={0.1} anisotropicBlur={0.1} chromaticAberration={0.1} samples={8} resolution={512} />
           </Model>
@@ -117,7 +121,8 @@ function Scene(props) {
         <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
       </EffectComposer>
       <Environment resolution={256}>
-        <group rotation={[-Math.PI / 3, 0, 1]}>
+        {/* <group rotation={[-Math.PI / 3, 0, 1]}> */}
+        <group>
           <Lightformer form="circle" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
           <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
           <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={2} />
@@ -136,7 +141,7 @@ function Connector({ position, children, vec = new THREE.Vector3(), scale, r = T
     api.current?.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(0.2))
   })
   return (
-    <RigidBody linearDamping={4} angularDamping={1} friction={0.1} position={pos} ref={api} colliders={false}>
+    <RigidBody linearDamping={0.5} angularDamping={0.5} friction={0.001} position={pos} ref={api} colliders={false}>
       <CuboidCollider args={[boxSize / 2, boxSize / 2, boxSize / 2]} />
       {children ? children : <Model {...props} />}
       {/* {accent && <pointLight intensity={4} distance={2.5} color={props.color} />} */}
@@ -158,7 +163,7 @@ function Pointer({ vec = new THREE.Vector3() }) {
 
 function Model({ children, color = 'white', roughness = 0, ...props }) {
   const ref = useRef()
-  const { nodes, materials } = useGLTF('/c-transformed.glb')
+  // const { nodes, materials } = useGLTF('/c-transformed.glb')
   useFrame((state, delta) => {
     easing.dampC(ref.current.material.color, color, 0.2, delta)
   })

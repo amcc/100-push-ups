@@ -18,13 +18,33 @@ body,
 }
 
 body {
-  background: #f0f0f0;
+  background: #fff;
 }
 
 a {
   /* all: unset; */
   color: rgb(230, 0, 121);
   cursor: pointer;
+}
+
+.nav-container {
+  display: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.scene-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene-inner {
+  height: min(50vw, 50vh);
+  width: 100%;
+  max-width: 1000px;
+  /* width: min(50vw, 50vh); */
 }
 
 .container {
@@ -62,7 +82,7 @@ a {
 }
 
 .caption {
-  font-size: 2.5em;
+  font-size: 1.5em;
   display: inline-block;
   max-width: 500px;
 }
