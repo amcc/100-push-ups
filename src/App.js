@@ -1,4 +1,4 @@
-const totalPressUps = 10
+const totalPushUps = 10
 
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
@@ -11,7 +11,7 @@ import { CuboidCollider, BallCollider, Physics, RigidBody } from '@react-three/r
 import { EffectComposer, N8AO } from '@react-three/postprocessing'
 import { easing } from 'maath'
 
-const scaledTotal = totalPressUps / 10
+const scaledTotal = totalPushUps / 10
 
 const accents = ['rgb(69,154,231)', 'rgba(0,0,121)']
 const colours = ['rgb(230, 0, 121)', '#fff']
@@ -63,6 +63,11 @@ export const App = () => (
       </div>
       <div className="scene-container">
         <div className="scene-inner">
+          <div className="total">
+            {totalPushUps} push-ups
+            <br />
+            so far in October
+          </div>
           <Scene />
         </div>
       </div>
