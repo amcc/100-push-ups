@@ -71,7 +71,7 @@ a {
   display: grid;
   padding: 3em 5em 3em 5em;
   grid-template-rows: auto 1fr;
-  gap: 3em;
+  gap: 2em;
   /* position: absolute; */
   width: 100%;
   min-height: 80vh;
@@ -193,11 +193,15 @@ a {
     content: 'OSS dev collective';
   } */
   .container {
-    padding: 2em 2em 2em 2em;
-    gap: 2em;
+    padding: 1em;
+    gap: 1em;
   }
   .text-container {
     padding-top: 0;
     width: 100%;
+  }
+
+  .caption::after {
+    content: '100 push-ups a day for Cancer Research';
   }
 }
