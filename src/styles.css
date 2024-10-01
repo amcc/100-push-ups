@@ -56,9 +56,13 @@ a {
     font-style: italic;
   }
 
+  .about-cubes {
+    font-weight: 300;
+  }
+
   pointer-events: none;
   font-size: 1.5em;
-  font-weight: 400;
+  font-weight: 600;
   width: 50%;
   position: absolute;
   bottom: 1em;

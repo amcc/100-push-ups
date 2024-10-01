@@ -74,7 +74,7 @@ export const App = () => (
           <div className="total">
             <span className="total-number">{totalPushUps}</span>
             <br />
-            push-ups in October
+            push-ups in October so far
             <br />
             <span className="about-cubes">1 cube = 10 pressups</span>
           </div>
@@ -95,7 +95,11 @@ export const App = () => (
           boxes grow.
         </p>
         <p>
-          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">Please donate if you can, all money goes to Cancer Research UK</a>
+          <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">Please donate if you can, all money goes to Cancer Research UK</a>.
+        </p>
+        <p>
+          There is no amount too small - even £1 makes a difference, however if you want to give me a penny a push-up that would be 3100p or £31 by the end of
+          the month!
         </p>
       </div>
     </section>
