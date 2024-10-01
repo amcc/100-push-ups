@@ -1,4 +1,12 @@
-const totalPushUps = 100
+const monthlyPressups = {
+  1: 100,
+  2: 30
+}
+
+// Add up values in monthlyPressups
+const totalPushUps = Object.values(monthlyPressups).reduce((sum, value) => sum + value, 0)
+
+console.log(totalPushUps) // Output: 130
 
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
@@ -64,9 +72,11 @@ export const App = () => (
       <div className="scene-container">
         <div className="scene-inner">
           <div className="total">
-            {totalPushUps} push-ups
+            <span className="total-number">{totalPushUps}</span>
             <br />
-            so far in October
+            push-ups in October
+            <br />
+            <span className="about-cubes">1 cube = 10 pressups</span>
           </div>
           <Scene />
         </div>
@@ -141,7 +151,7 @@ function Connector({ position, children, vec = new THREE.Vector3(), scale, r = T
     api.current?.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(0.2))
   })
   return (
-    <RigidBody linearDamping={0.5} angularDamping={0.5} friction={0.001} position={pos} ref={api} colliders={false}>
+    <RigidBody linearDamping={0.5} angularDamping={0.5} friction={0.01} position={pos} ref={api} colliders={false}>
       <CuboidCollider args={[boxSize / 2, boxSize / 2, boxSize / 2]} />
       {children ? children : <Model {...props} />}
       {/* {accent && <pointLight intensity={4} distance={2.5} color={props.color} />} */}
