@@ -1,4 +1,4 @@
-const totalPushUps = 30
+const totalPushUps = 60
 
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
