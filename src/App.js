@@ -1,6 +1,6 @@
 const monthlyPressups = {
   1: 100,
-  2: 50,
+  2: 70,
   3: 0
 }
 
