@@ -12,14 +12,8 @@ const totalPushUps = Object.values(monthlypushups).reduce((sum, value) => sum + 
 // currentDay = get last key in object
 const currentDay = Object.keys(monthlypushups).reduce((sum, value) => value, 0)
 const date = new Date()
-const mostRecentPushups = Object.values(monthlypushups).reduce((sum, value) => value, 0)
 const pushUpsToday = monthlypushups[date.getDate()] || 0
 // const pushUpsToday = currentDay == date.getDate() ? mostRecentPushups : 0
-
-// console.log(totalPushUps) // Output: 130
-
-// https://twitter.com/lusionltd/status/1701534187545636964
-// https://lusion.co
 
 import * as THREE from 'three'
 import { useRef, useReducer, useMemo } from 'react'
@@ -87,7 +81,9 @@ export const App = () => (
             push-ups in October
             {pushUpsToday > 0 && (
               <div>
-                <span className="today">day 4: {pushUpsToday}/100</span>
+                <span className="today">
+                  day {date.getDate()}: {pushUpsToday}/100
+                </span>
               </div>
             )}
             <br />
