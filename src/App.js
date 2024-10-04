@@ -1,14 +1,18 @@
-const monthlyPressups = {
+const monthlypushups = {
   1: 100,
   2: 100,
   3: 100,
   4: 60
 }
 
-// Add up values in monthlyPressups
-const totalPushUps = Object.values(monthlyPressups).reduce((sum, value) => sum + value, 0)
+// Add up values in monthlypushups
+const totalPushUps = Object.values(monthlypushups).reduce((sum, value) => sum + value, 0)
 
-console.log(totalPushUps) // Output: 130
+// currentDay = get last key in object
+const currentDay = Object.keys(monthlypushups).reduce((sum, value) => value, 0)
+const pushUpsToday = Object.values(monthlypushups).reduce((sum, value) => value, 0)
+
+// console.log(totalPushUps) // Output: 130
 
 // https://twitter.com/lusionltd/status/1701534187545636964
 // https://lusion.co
@@ -76,9 +80,12 @@ export const App = () => (
           <div className="total">
             <span className="total-number">{totalPushUps}</span>
             <br />
-            push-ups in October so far
+            push-ups in October
+            <div>
+              <span className="today">day 4: {pushUpsToday}/100</span>
+            </div>
             <br />
-            <span className="about-cubes">1 cube = 10 pressups</span>
+            <span className="about-cubes">1 cube = 10 pushups</span>
           </div>
           <Scene />
         </div>
@@ -93,8 +100,16 @@ export const App = () => (
           </a>
         </p>
         <p>
-          Every box above represents 10 push-ups, i'll be doing push-ups in blocks of 10 each day, if you check back on this page you will see the number of
-          boxes grow.
+          Today i've done{' '}
+          <strong>
+            <em>{pushUpsToday}/100</em>
+          </strong>{' '}
+          push-ups, so far in October I have done{' '}
+          <strong>
+            <em>{totalPushUps}</em>
+          </strong>{' '}
+          push-ups. Every box above represents 10 push-ups, i'll be doing push-ups in blocks of 10 each day, if you check back on this page you will see the
+          number of boxes grow.
         </p>
         <p>
           <a href="https://fundraise.cancerresearchuk.org/page/alistairs-100-pushups">Please donate if you can, all money goes to Cancer Research UK</a>.
