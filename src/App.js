@@ -2,7 +2,8 @@ const monthlypushups = {
   1: 100,
   2: 100,
   3: 100,
-  4: 60
+  4: 60,
+  5: 0
 }
 
 // Add up values in monthlypushups
@@ -10,7 +11,10 @@ const totalPushUps = Object.values(monthlypushups).reduce((sum, value) => sum + 
 
 // currentDay = get last key in object
 const currentDay = Object.keys(monthlypushups).reduce((sum, value) => value, 0)
-const pushUpsToday = Object.values(monthlypushups).reduce((sum, value) => value, 0)
+const date = new Date()
+const mostRecentPushups = Object.values(monthlypushups).reduce((sum, value) => value, 0)
+const pushUpsToday = monthlypushups[date.getDate()] || 0
+// const pushUpsToday = currentDay == date.getDate() ? mostRecentPushups : 0
 
 // console.log(totalPushUps) // Output: 130
 
@@ -81,9 +85,11 @@ export const App = () => (
             <span className="total-number">{totalPushUps}</span>
             <br />
             push-ups in October
-            <div>
-              <span className="today">day 4: {pushUpsToday}/100</span>
-            </div>
+            {pushUpsToday > 0 && (
+              <div>
+                <span className="today">day 4: {pushUpsToday}/100</span>
+              </div>
+            )}
             <br />
             <span className="about-cubes">1 cube = 10 pushups</span>
           </div>
