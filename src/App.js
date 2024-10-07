@@ -5,7 +5,7 @@ const monthlypushups = {
   4: 100,
   5: 110,
   6: 100,
-  7: 60
+  7: 80
 }
 
 // Add up values in monthlypushups
