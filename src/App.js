@@ -11,7 +11,8 @@ const monthlypushups = {
   10: 100,
   11: 110,
   12: 100,
-  13: 110
+  13: 110,
+  14: 115
 }
 
 // Add up values in monthlypushups
